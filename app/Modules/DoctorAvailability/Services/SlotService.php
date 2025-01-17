@@ -2,6 +2,7 @@
 namespace App\Modules\DoctorAvailability\Services;
 
 use App\Models\Slot;
+use App\Modules\DoctorAvailability\Contracts\SlotAvailability;
 
 class SlotService
 {
@@ -16,4 +17,6 @@ class SlotService
           'doctor_id' => 1 //assume that the current doctor id is 1
         ]));
     }
+
+ 
 }
