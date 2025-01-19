@@ -1,17 +1,27 @@
 <?php
 namespace App\Modules\AppointmentBooking\Infrastructure;
 
-use App\Models\Appointment;
+use App\Modules\AppointmentBooking\Entities\Appointment as EntitiesAppointment;
 use App\Modules\AppointmentBooking\Repository\AppointmentRepositoryInterface;
-use App\Modules\AppointmentConfirmation\Events\AppointmentCreated;
-use Illuminate\Console\Scheduling\Event;
+use App\Modules\Shared\Models\Appointment;
+use AppointmentConfirmationGateway;
 
 class AppointmentRepository implements AppointmentRepositoryInterface 
 {
-  public function create(array $data): Appointment
+  public function __construct(private AppointmentConfirmationGateway $appointmentConfirmationGateway)
   {
-    $appointment = Appointment::create($data);
-    Event::dispatch(new AppointmentCreated($appointment));
+    $this->appointmentConfirmationGateway = $appointmentConfirmationGateway;
+  }
+
+  public function create($appointment): Appointment
+  {
+    $appointment = Appointment::create([
+      'slot_id' => $appointment->slotId,
+      'patient_id' => $appointment->patientId,
+      'patient_name' => $appointment->patientName,
+      'reserved_at' => $appointment->reservedAt,
+    ]);
+    $this->appointmentConfirmationGateway->dispatchAppointmentCreatedEvent($appointment);
     return $appointment;
   }
 }

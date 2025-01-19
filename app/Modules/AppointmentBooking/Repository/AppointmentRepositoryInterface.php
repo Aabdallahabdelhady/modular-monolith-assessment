@@ -1,9 +1,10 @@
 <?php
 namespace App\Modules\AppointmentBooking\Repository;
 
-use App\Models\Appointment;
+use App\Modules\AppointmentBooking\Entities\Appointment as EntitiesAppointment;
+use App\Modules\Shared\Models\Appointment;
 
 interface AppointmentRepositoryInterface
 {
-  public function create(array $data): Appointment;
+  public function create(EntitiesAppointment $appointment): Appointment;
 }

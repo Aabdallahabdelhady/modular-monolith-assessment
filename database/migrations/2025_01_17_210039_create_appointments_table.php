@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('slot_id');
             $table->unsignedBigInteger('patient_id');
             $table->string('patient_name');
-            $table->dateTime('reserved_at'); 
+            $table->dateTime('reserved_at');
+            $table->enum('status',['pending','completed','canceled']);
             $table->timestamps();
         });
     }
