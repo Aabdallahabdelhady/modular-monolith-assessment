@@ -168,6 +168,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Modules\Shared\Providers\DoctorAvailabilityServiceProvider::class,
+        App\Modules\Shared\Providers\AppointmentBookingServiceProvider::class,
+        App\Modules\Shared\Providers\AppointmentConfirmationServiceProvider::class,
+        App\Modules\Shared\Providers\DoctorAppointmentManagementServiceProvider::class,
     ])->toArray(),
 
     /*

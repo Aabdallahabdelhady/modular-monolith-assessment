@@ -1,6 +1,7 @@
 <?php
 namespace App\Modules\AppointmentConfirmation\Events;
-use App\Models\Appointment;
+
+use App\Modules\Shared\Models\Appointment;
 
 class AppointmentCreated
 {
